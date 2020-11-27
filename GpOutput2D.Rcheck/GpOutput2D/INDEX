@@ -1,0 +1,33 @@
+Campbell2D              Example of function called Campbell2D
+Fpca2d                  Two-dimensional Functional Principal Component
+                        Analysis (FPCA).
+Fpca2d.Bsplines         Two dimensional functional principal component
+                        analysis (FPCA) by using B-splines basis
+Fpca2d.Wavelets         Two dimensional functional principal component
+                        analysis (FPCA) by using wavelet basis
+GpOutput2D-package      Memodelling for model with two-dimensional
+                        functional output by using Functional Principal
+                        Component Analysis and kriging methods
+Inverse2D               Inverse transform of wavelet or orthonormal
+                        B-splines basis.
+Inverse2D.OrthoNormalBsplines2D
+                        Inverse transform of control points of
+                        two-dimensional B-splines basis
+Inverse2D.Wavelet2D     Multiple two-dimensional inverse wavelet
+                        transform
+OrthoNormalBsplines2D   Creating a two-dimensional othonormal B-splines
+                        basis
+Wavelet2D               Multiple two dimensional wavelet transform
+coef.OrthoNormalBsplines2D
+                        Get control points of two-dimensional B-splines
+                        basis
+error.predict           RMSE and Q2 computation
+gp_Fpca2d               Gaussian Process Model on principal components
+                        of 'Fpca2d', by using 'kergp' package
+km_Fpca2d               Gaussian Process Model on principal components
+                        of 'Fpca2d', by using 'DiceKriging' package.
+plot.Fpca2d             Plot for Fpca2d object
+predict.gp_Fpca2d       Predict values and confidence intervals at
+                        newdata for a km_Fpca2d object
+predict.km_Fpca2d       Predict values and confidence intervals at
+                        newdata for a km_Fpca2d object

@@ -1,0 +1,7 @@
+name	user	system	elapsed
+Campbell2D	0	0	0	
+Fpca2d	3.19	0.05	3.27	
+OrthoNormalBsplines2D	0.25	0.00	0.25	
+Wavelet2D	0	0	0	
+gp_Fpca2d	4.09	0.13	4.26	
+km_Fpca2d	4.36	0.14	4.52	
