@@ -140,9 +140,11 @@ Fpca2d.Bsplines<-function(x,
 
   ## wavelet coefficients of the eigenfunctions ##
   d.basis <-dim(OPhi)
-  coeff_eig <-matrix(rep(0,nPC*d.basis[2]*d.basis[4]),ncol=nPC) # eigenfunctions
-  coeff_eig[idx_pca,]<-rot
-  coeff_eig <- array(coeff_eig,dim=c(d.basis[c(2,4)],nPC))
+  coeff_eig_mat <-matrix(rep(0,nPC*d.basis[2]*d.basis[4]),ncol=nPC) # eigenfunctions
+  coeff_eig_mat[idx_pca,]<-rot
+  coeff_eig <- array(coeff_eig_mat,dim=c(d.basis[c(2,4)],nPC))
+
+  attr(coeff_eig,"matrix")<-coeff_eig_mat
 
   ## eigenfunctions ##
   eigen_fct<-Inverse2D(OPhi,coeff_eig)
