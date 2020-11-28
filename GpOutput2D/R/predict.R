@@ -31,6 +31,7 @@ predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
   # number of principal component
   nPC <- length(object)
 
+
   # number of prediction
   n<-nrow(newdata)
 
@@ -68,11 +69,21 @@ predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
     #%%%%%%%%%%%%%%%%%%%%%%%%%
     sd2<-matrix(nrow=d[1]*d[2],ncol=n)
     xi <- matrix(fpca$EigFct,ncol=nPC)# eigenfunctions on vectors
-    for(i in 1:n){
-      XiZ<-xi%*%diag(p_sd2[i,])%*%t(xi)
-      sd2[,i] <- diag(XiZ)
-    }# end for i
-    sd2 <-array(sd2,dim = c(d[1:2],n))
+
+
+    if(nPC==1){
+      for(i in 1:n){
+        XiZ<-p_sd2[i]*(xi%*%t(xi))
+        sd2[,i] <- diag(XiZ)
+      }# end for i
+      sd2 <-array(sd2,dim = c(d[1:2],n))
+    }else{
+      for(i in 1:n){
+        XiZ<-xi%*%diag(p_sd2[i,])%*%t(xi)
+        sd2[,i] <- diag(XiZ)
+      }# end for i
+      sd2 <-array(sd2,dim = c(d[1:2],n))
+    } # end ifelse
     res$sd <- sqrt(sd2) # standard deviation
 
     # 95% confidence interval
@@ -160,11 +171,22 @@ predict.gp_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
     #%%%%%%%%%%%%%%%%%%%%%%%%%
     sd2<-matrix(nrow=d[1]*d[2],ncol=n)
     xi <- matrix(fpca$EigFct,ncol=nPC)# eigenfunctions on vectors
-    for(i in 1:n){
-      XiZ<-xi%*%diag(p_sd2[i,])%*%t(xi)
-      sd2[,i] <- diag(XiZ)
-    }# end for i
-    sd2 <-array(sd2,dim = c(d[1:2],n))
+
+    if(nPC==1){
+      for(i in 1:n){
+        XiZ<-p_sd2[i]*(xi%*%t(xi))
+        sd2[,i] <- diag(XiZ)
+      }# end for i
+      sd2 <-array(sd2,dim = c(d[1:2],n))
+    }else{
+      for(i in 1:n){
+        XiZ<-xi%*%diag(p_sd2[i,])%*%t(xi)
+        sd2[,i] <- diag(XiZ)
+      }# end for i
+      sd2 <-array(sd2,dim = c(d[1:2],n))
+    } # end ifelse
+
+
     res$sd <- sqrt(sd2) # standard deviation
 
     # 95% confidence interval

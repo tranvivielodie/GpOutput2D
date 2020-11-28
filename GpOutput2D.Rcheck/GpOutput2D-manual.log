@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.3)  25 NOV 2020 18:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.3)  28 NOV 2020 18:14
 entering extended mode
-**C:/Users/tran-/AppData/Local/Temp/RtmpUF6PHG/Rd2pdf48a0c5359c2/Rd2.tex
-(C:/Users/tran-/AppData/Local/Temp/RtmpUF6PHG/Rd2pdf48a0c5359c2/Rd2.tex
+**C:/Users/tran-/AppData/Local/Temp/RtmpkdP2Lu/Rd2pdf6f086606711d/Rd2.tex
+(C:/Users/tran-/AppData/Local/Temp/RtmpkdP2Lu/Rd2pdf6f086606711d/Rd2.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18>
 (C:\Users\tran-\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
@@ -394,27 +394,27 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
 [18] [19]
-Overfull \hbox (39.55832pt too wide) in paragraph at lines 1137--1138
+Overfull \hbox (39.55832pt too wide) in paragraph at lines 1134--1135
 []\T1/ptm/m/n/10 a vec-tor with the pro-por-tion of en-ergy which are plot-ted.
  The de-fault is seq(0.5,1,by=0.05). 
  []
 
 [20]
-Overfull \hbox (23.16788pt too wide) in paragraph at lines 1176--1178
+Overfull \hbox (23.16788pt too wide) in paragraph at lines 1173--1175
 []\T1/zi4/m/n/10 scores_predict \T1/ptm/m/n/10 : pre-dic-tion of scores from tw
 o-dimensional FPCA (see [][]\T1/zi4/m/n/10 Fpca2d[][][] \T1/ptm/m/n/10 and [][]
 \T1/zi4/m/n/10 predict.km[][][]\T1/ptm/m/n/10 ). 
  []
 
 [21]
-Overfull \hbox (23.16788pt too wide) in paragraph at lines 1224--1226
+Overfull \hbox (23.16788pt too wide) in paragraph at lines 1221--1223
 []\T1/zi4/m/n/10 scores_predict \T1/ptm/m/n/10 : pre-dic-tion of scores from tw
 o-dimensional FPCA (see [][]\T1/zi4/m/n/10 Fpca2d[][][] \T1/ptm/m/n/10 and [][]
 \T1/zi4/m/n/10 predict.km[][][]\T1/ptm/m/n/10 ). 
  []
 
 [22]
-Overfull \hbox (8.50803pt too wide) in paragraph at lines 1261--1262
+Overfull \hbox (8.50803pt too wide) in paragraph at lines 1258--1259
 []\T1/ptm/m/n/10 depth of the de-com-po-si-tion, must be a num-ber less than or
  equal to log(minM,N,2),
  []
@@ -428,11 +428,11 @@ LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1303.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1303.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1300.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1300.
  (Rd2.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1303.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1303.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1300.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1300.
 
 Package rerunfilecheck Info: File `Rd2.out' has not changed.
 (rerunfilecheck)             Checksum: 87705AF42CA6857E82BC1DD66447D3C3;1135.
@@ -440,16 +440,16 @@ Package rerunfilecheck Info: File `Rd2.out' has not changed.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1303.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1300.
  ) 
 Here is how much of TeX's memory you used:
  6218 strings out of 480790
- 95233 string characters out of 2897302
+ 95244 string characters out of 2897302
  353702 words of memory out of 3000000
  21916 multiletter control sequences out of 15000+200000
  567190 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,5n,40p,474b,604s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,5n,40p,475b,604s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Rfn.predict.km} has been referenced but does not 
 exist, replaced by a fixed one
 
@@ -505,7 +505,7 @@ ts/type1/urw/times/utmb8a.pfb><C:/Users/tran-/AppData/Local/Programs/MiKTeX/fon
 ts/type1/urw/times/utmr8a.pfb><C:/Users/tran-/AppData/Local/Programs/MiKTeX/fon
 ts/type1/urw/times/utmr8a.pfb><C:/Users/tran-/AppData/Local/Programs/MiKTeX/fon
 ts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (25 pages, 185975 bytes).
+Output written on Rd2.pdf (25 pages, 186033 bytes).
 PDF statistics:
  535 PDF objects out of 1000 (max. 8388607)
  172 named destinations out of 1000 (max. 500000)

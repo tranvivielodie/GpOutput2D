@@ -359,7 +359,7 @@ base::assign(".ptime", proc.time(), pos = "CheckExEnv")
 
 
 ################################
-### two-dimensional data set ###
+###   Learning Sample        ###
 ################################
 n<-200 # size of the learning sample
 nz<-64; z <- seq(-90,90,length=nz) # spatial domain
@@ -378,44 +378,36 @@ Y <- Campbell2D(X,z,z)
 # change X on data.frame
 colnames(X)<-paste("x",1:8,sep="")
 
+############################
+###   Test Sample        ###
+############################
+
+NewX<-matrix(runif(5*8,min=-1,max=5),ncol=8) # newdata
+RealY <- Campbell2D(NewX,z,z)# real maps
+
+# change NewX on data.frame
+colnames(NewX)<-colnames(X)
+
+
+######################################
+#
+#   Example by using wavelets
+#
+######################################
+
 ############
 ### FPCA ###
 ############
 
-### by using wavelet basis ###
 fpca_w<- Fpca2d(Y,method="Wavelets",
                 wf="d4", J=1, # wavelet parameters
-                ncoeff=1200, rank.=2) # FPCA configuration
-
-## Not run: 
-##D ### using B-splines basis ###
-##D 
-##D # knots for B-splines basis
-##D K<-35
-##D z.knots <- seq(-90,90,length=K)
-##D 
-##D fpca_Bs<- Fpca2d(Y,method="Bsplines",
-##D                 z1=z,z2=z,z1.knots=z.knots,z2.knots=z.knots, ortho="GS",
-##D                 expand_knots=TRUE,# B-splines parameters
-##D                 ncoeff=1225, rank.=5) # FPCA configuration
-## End(Not run)
+                ncoeff=1200, rank.=1) # FPCA configuration
 
 #####################
-###               ###
 ### Kriging model ###
-###               ###
 #####################
-
-
-###  by using wavelet basis  ###
 
 mw <- km_Fpca2d(design=X,response=fpca_w,control=list(trace=FALSE))
-
-
-## Not run: 
-##D ###  by using B-splines basis  ###
-##D mB <- km_Fpca2d(design=X,response=fpca_Bs,control=list(trace=FALSE))
-## End(Not run)
 
 #--------------------------------------------------------
 # (same example) To fix different kernel and formula
@@ -427,7 +419,6 @@ mw <- km_Fpca2d(design=X,response=fpca_w,control=list(trace=FALSE))
 ##D                 covtype = c("matern5_2","matern3_2"),
 ##D                 control=list(trace=FALSE))
 ## End(Not run)
-
 
 #--------------------------------------------------------
 # (same example) how to use the multistart argument of km
@@ -441,41 +432,16 @@ mw <- km_Fpca2d(design=X,response=fpca_w,control=list(trace=FALSE))
 ##D stopCluster(cl)
 ## End(Not run)
 
-##################
-### Prediction ###
-##################
+######################
+###   Prediction   ###
+######################
 
-NewX<-matrix(runif(5*8,min=-1,max=5),ncol=8) # newdata
-RealY <- Campbell2D(NewX,z,z)# real maps
-
-# change NewX on data.frame
-colnames(NewX)<-colnames(X)
-
-#------------------------------------#
-#------------------------------------#
-#   Example by using wavelet basis   #
-#------------------------------------#
-#------------------------------------#
 pw.UK <- predict(mw,NewX,"UK")
 
-## Not run: 
-##D #--------------------------------------#
-##D #--------------------------------------#
-##D #   Example by using B-splines basis   #
-##D #--------------------------------------#
-##D #--------------------------------------#
-##D pB.UK <- predict(mB,NewX,"UK")
-## End(Not run)
+####################
+### RMSE and Q2  ###
+####################
 
-###############################
-### Prediction RMSE and Q2  ###
-###############################
-
-#------------------------------------#
-#------------------------------------#
-#   Example by using wavelet basis   #
-#------------------------------------#
-#------------------------------------#
 err.pw.UK <-error.predict(RealY,pw.UK,fpca_w,rtx.scores=TRUE)
 
 ### scores ###
@@ -487,12 +453,46 @@ library(fields)
 image.plot(err.pw.UK$y$rmse, main="RMSE")
 image.plot(err.pw.UK$y$Q2, main="Q2")
 
+
+######################################
+#
+#   Example by using B-splines
+#
+######################################
+
 ## Not run: 
-##D #--------------------------------------#
-##D #--------------------------------------#
-##D #   Example by using B-splines basis   #
-##D #--------------------------------------#
-##D #--------------------------------------#
+##D ############
+##D ### FPCA ###
+##D ############
+##D 
+##D ### using B-splines basis ###
+##D 
+##D # knots for B-splines basis
+##D K<-35
+##D z.knots <- seq(-90,90,length=K)
+##D 
+##D fpca_Bs<- Fpca2d(Y,method="Bsplines",
+##D                 z1=z,z2=z,z1.knots=z.knots,z2.knots=z.knots, ortho="GS",
+##D                 expand_knots=TRUE,# B-splines parameters
+##D                 ncoeff=1225, rank.=5) # FPCA configuration
+##D 
+##D 
+##D #####################
+##D ### Kriging model ###
+##D #####################
+##D 
+##D mB <- km_Fpca2d(design=X,response=fpca_Bs,control=list(trace=FALSE))
+##D 
+##D ##################
+##D ### Prediction ###
+##D ##################
+##D 
+##D pB.UK <- predict(mB,NewX,"UK")
+##D 
+##D ########################
+##D ###   RMSE and Q2    ###
+##D ########################
+##D 
 ##D err.pB.UK <-error.predict(RealY,pB.UK,fpca_Bs,rtx.scores=TRUE)
 ##D 
 ##D ### scores ###

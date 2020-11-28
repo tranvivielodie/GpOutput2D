@@ -52,7 +52,6 @@ Loading required package: Rcpp
 Loading required package: testthat
 Loading required package: nloptr
 Loading required package: lattice
-Loading required package: foreach
 > 
 > base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
 > base::assign(".old_wd", base::getwd(), pos = 'CheckExEnv')
@@ -384,6 +383,8 @@ detaching 'package:DiceDesign', 'package:lhs'
 > 
 > # Generating a two-dimensional othonormal B-splines basis
 > OPhi <-OrthoNormalBsplines2D(z,z,z.knots,z.knots,ortho="GS")
+Warning in rm(list = c("new.OPhi ", "Phi_mat")) :
+  object 'new.OPhi ' not found
 > 
 > ########################
 > #
@@ -751,7 +752,7 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 > 
 > 
 > ################################
-> ### two-dimensional data set ###
+> ###   Learning Sample        ###
 > ################################
 > n<-200 # size of the learning sample
 > nz<-64; z <- seq(-90,90,length=nz) # spatial domain
@@ -770,44 +771,36 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 > # change X on data.frame
 > colnames(X)<-paste("x",1:8,sep="")
 > 
+> ############################
+> ###   Test Sample        ###
+> ############################
+> 
+> NewX<-matrix(runif(5*8,min=-1,max=5),ncol=8) # newdata
+> RealY <- Campbell2D(NewX,z,z)# real maps
+> 
+> # change NewX on data.frame
+> colnames(NewX)<-colnames(X)
+> 
+> 
+> ######################################
+> #
+> #   Example by using wavelets
+> #
+> ######################################
+> 
 > ############
 > ### FPCA ###
 > ############
 > 
-> ### by using wavelet basis ###
 > fpca_w<- Fpca2d(Y,method="Wavelets",
 +                 wf="d4", J=1, # wavelet parameters
-+                 ncoeff=1200, rank.=2) # FPCA configuration
-> 
-> ## Not run: 
-> ##D ### using B-splines basis ###
-> ##D 
-> ##D # knots for B-splines basis
-> ##D K<-35
-> ##D z.knots <- seq(-90,90,length=K)
-> ##D 
-> ##D fpca_Bs<- Fpca2d(Y,method="Bsplines",
-> ##D                 z1=z,z2=z,z1.knots=z.knots,z2.knots=z.knots, ortho="GS",
-> ##D                 expand_knots=TRUE,# B-splines parameters
-> ##D                 ncoeff=1225, rank.=5) # FPCA configuration
-> ## End(Not run)
++                 ncoeff=1200, rank.=1) # FPCA configuration
 > 
 > #####################
-> ###               ###
 > ### Kriging model ###
-> ###               ###
 > #####################
-> 
-> 
-> ###  by using wavelet basis  ###
 > 
 > mw <- km_Fpca2d(design=X,response=fpca_w,control=list(trace=FALSE))
-> 
-> 
-> ## Not run: 
-> ##D ###  by using B-splines basis  ###
-> ##D mB <- km_Fpca2d(design=X,response=fpca_Bs,control=list(trace=FALSE))
-> ## End(Not run)
 > 
 > #--------------------------------------------------------
 > # (same example) To fix different kernel and formula
@@ -819,7 +812,6 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 > ##D                 covtype = c("matern5_2","matern3_2"),
 > ##D                 control=list(trace=FALSE))
 > ## End(Not run)
-> 
 > 
 > #--------------------------------------------------------
 > # (same example) how to use the multistart argument of km
@@ -833,50 +825,25 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 > ##D stopCluster(cl)
 > ## End(Not run)
 > 
-> ##################
-> ### Prediction ###
-> ##################
+> ######################
+> ###   Prediction   ###
+> ######################
 > 
-> NewX<-matrix(runif(5*8,min=-1,max=5),ncol=8) # newdata
-> RealY <- Campbell2D(NewX,z,z)# real maps
-> 
-> # change NewX on data.frame
-> colnames(NewX)<-colnames(X)
-> 
-> #------------------------------------#
-> #------------------------------------#
-> #   Example by using wavelet basis   #
-> #------------------------------------#
-> #------------------------------------#
 > pw.UK <- predict(mw,NewX,"UK")
 > 
-> ## Not run: 
-> ##D #--------------------------------------#
-> ##D #--------------------------------------#
-> ##D #   Example by using B-splines basis   #
-> ##D #--------------------------------------#
-> ##D #--------------------------------------#
-> ##D pB.UK <- predict(mB,NewX,"UK")
-> ## End(Not run)
+> ####################
+> ### RMSE and Q2  ###
+> ####################
 > 
-> ###############################
-> ### Prediction RMSE and Q2  ###
-> ###############################
-> 
-> #------------------------------------#
-> #------------------------------------#
-> #   Example by using wavelet basis   #
-> #------------------------------------#
-> #------------------------------------#
 > err.pw.UK <-error.predict(RealY,pw.UK,fpca_w,rtx.scores=TRUE)
 > 
 > ### scores ###
 > print(err.pw.UK$scores$rmse)
-     PC1      PC2 
-24.17098 33.20292 
+     PC1 
+36.73079 
 > print(err.pw.UK$scores$Q2)
-      PC1       PC2 
-0.9964704 0.9217285 
+      PC1 
+0.9953079 
 > 
 > ### images/maps ###
 > library(fields)
@@ -1037,12 +1004,46 @@ The following object is masked from 'package:testthat':
 [57] 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000 0.0000000
 [64] 0.0000000
 > 
+> 
+> ######################################
+> #
+> #   Example by using B-splines
+> #
+> ######################################
+> 
 > ## Not run: 
-> ##D #--------------------------------------#
-> ##D #--------------------------------------#
-> ##D #   Example by using B-splines basis   #
-> ##D #--------------------------------------#
-> ##D #--------------------------------------#
+> ##D ############
+> ##D ### FPCA ###
+> ##D ############
+> ##D 
+> ##D ### using B-splines basis ###
+> ##D 
+> ##D # knots for B-splines basis
+> ##D K<-35
+> ##D z.knots <- seq(-90,90,length=K)
+> ##D 
+> ##D fpca_Bs<- Fpca2d(Y,method="Bsplines",
+> ##D                 z1=z,z2=z,z1.knots=z.knots,z2.knots=z.knots, ortho="GS",
+> ##D                 expand_knots=TRUE,# B-splines parameters
+> ##D                 ncoeff=1225, rank.=5) # FPCA configuration
+> ##D 
+> ##D 
+> ##D #####################
+> ##D ### Kriging model ###
+> ##D #####################
+> ##D 
+> ##D mB <- km_Fpca2d(design=X,response=fpca_Bs,control=list(trace=FALSE))
+> ##D 
+> ##D ##################
+> ##D ### Prediction ###
+> ##D ##################
+> ##D 
+> ##D pB.UK <- predict(mB,NewX,"UK")
+> ##D 
+> ##D ########################
+> ##D ###   RMSE and Q2    ###
+> ##D ########################
+> ##D 
 > ##D err.pB.UK <-error.predict(RealY,pB.UK,fpca_Bs,rtx.scores=TRUE)
 > ##D 
 > ##D ### scores ###
@@ -1068,7 +1069,7 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  13 0.47 13.63 NA NA 
+Time elapsed:  14.3 0.28 14.92 NA NA 
 > grDevices::dev.off()
 null device 
           1 

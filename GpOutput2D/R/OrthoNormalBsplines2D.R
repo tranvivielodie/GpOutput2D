@@ -16,7 +16,6 @@
 #'
 #' @import orthogonalsplinebasis
 #' @importFrom pracma gramSchmidt
-#' @importFrom tensor tensor
 #'
 #' @seealso \code{\link{coef.OrthoNormalBsplines2D}} \code{\link{Inverse2D.OrthoNormalBsplines2D}}
 #' \code{\link{Inverse2D}}
@@ -115,6 +114,9 @@ OrthoNormalBsplines2D <-function(x,y,x.knots,y.knots,order=2,ortho="Redd",expand
     # Gram-Schmidt orthogonalization
     OPhi1 <-gramSchmidt(Phi1)$Q
     OPhi2 <-gramSchmidt(Phi2)$Q
+
+    # memory deallocation
+    rm(list=c("Phi1","Phi2"))
   }
 
 
@@ -128,17 +130,22 @@ OrthoNormalBsplines2D <-function(x,y,x.knots,y.knots,order=2,ortho="Redd",expand
   OPhi1 <- sapply(1:K, function(k){OPhi1[,k]/norm_eucl1[k]})
   OPhi2 <- sapply(1:L, function(l){OPhi2[,l]/norm_eucl2[l]})
 
+  # memory deallocation
+  rm(list=c("norm_eucl1","norm_eucl2"))
+
   # tensor product
-  OPhi_2D <-tensor(OPhi1,OPhi2)
+  OPhi_2D <-OPhi1%o%OPhi2
 
-  # OPhi_2D <-array(dim = c(nx,ny,K,L))
-  #
-  # for(k in 1:K){
-  #   for(l in 1:L){
-  #     OPhi_2D[,,k,l] <-sapply(1:ny,function(i){OPhi1[,k]*OPhi2[i,l]})
-  #   }# end for l
-  # }# end for k
+  # memory deallocation
+  rm(list=c("OPhi1","OPhi2"))
 
+  # matrix (to compute coefficients)
+  new.OPhi <- aperm(OPhi_2D, c(1,3,2,4))
+  Phi_mat <-matrix(new.OPhi,nrow=nx*ny,ncol=K*L)
+  attr(OPhi_2D,"matrix")<-Phi_mat
+
+  # memory deallocation
+  rm(list=c("new.OPhi","Phi_mat"))
 
   class(OPhi_2D)<-"OrthoNormalBsplines2D"
 

@@ -5,8 +5,8 @@ Version: 0.1.0
 Author: Tran Vi-vi Elodie PERRIN <tran-vivi-elodie.perrin@outlook.fr>
 Maintainer: Tran Vi-vi Elodie PERRIN <tran-vivi-elodie.perrin@outlook.fr>
 Description: Package for two-dimensional functional data analysis (for instance : data set of images or maps). Functions for performing Functional Principal Component Analysis (FPCA) on such data have been developped. Furthermore, the package contains methods for Computer Experiments by using kriging methods : metamodelling of models with two-dimensional functional output.
-Imports: lhs,DiceDesign,stats,graphics,doParallel,fields,pracma,tensor
-Depends: waveslim, orthogonalsplinebasis,DiceKriging,kergp,foreach
+Imports: lhs,DiceDesign,stats,graphics,doParallel,fields,pracma,foreach
+Depends: waveslim, orthogonalsplinebasis,DiceKriging,kergp
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
