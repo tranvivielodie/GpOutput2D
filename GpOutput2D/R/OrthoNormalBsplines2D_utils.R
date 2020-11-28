@@ -25,20 +25,20 @@ coef.OrthoNormalBsplines2D<-function(object, y,...){
   # basis dimensions
   K<-d[2]; L<-d[4]
 
-    # object in matrix form
+  # y in matrix form
+  y_mat<-matrix(y,ncol=n)
 
-    y_mat<-matrix(y,ncol=n)
-    coeff <- array(dim=c(K,L,n))
+  ###############
+  # coefficients
+  ###############
 
-    i <- 0
-    for(k in 1:K){
-      for(l in 1:L){
-        i<-i+1
-        Phi_kl <- matrix(object[,k,,l],nrow=1)
-        coeff[k,l,] <-  Phi_kl %*%y_mat
-      }# end for l
-    }# end for k
+  # In matrix form
+  basis <- attr(object,"matrix") # basis functions
+  coeff_mat <- t(basis)%*%y_mat
 
+  # Array
+  coeff <- array(coeff_mat,dim=c(K,L,n))
+  attr(coeff,"matrix")<-coeff_mat
 
 
   class(coeff)<-"coef_OrthoNormalBsplines2D"
@@ -77,22 +77,14 @@ Inverse2D.OrthoNormalBsplines2D<-function(object,coeff,...){
   # data set size
   n<-dim(coeff)[3]
 
-  coeffm <-matrix(coeff,ncol=n) # coefficients on matrix
-  # K <-nrow(coeffm)# total number of coefficients
-  # objectm <- array(object,dim=c((n1<-d[1]),(n2<-d[2]),K)) # object on 3D array
+  coeffm <-attr(coeff,"matrix") # coefficients on matrix
+
+  # objects in matrix form
+  basis <- attr(object,"matrix") # basis functions
+  Y <-basis%*%coeffm
 
   # approximated data
-  hatY <- array(dim=c((n1<-d[1]),(n2<-d[3]),n))
-
-  t <- Sys.time()
-  for(i in 1:n1){
-    for(j in 1:n2){
-      # hatY[i,j,]<-sapply(1:n,function(l){sum(coeffm[,l]*objectm[i,j,])})
-      Phi_ij <- matrix(object[i,,j,],nrow=1)
-      hatY[i,j,]<-Phi_ij%*%coeffm
-    }# end for j
-  }# end for i
-  t <- Sys.time()-t
+  hatY <- array(Y,dim=c(d[1],d[3],n))
 
   return(hatY)
 

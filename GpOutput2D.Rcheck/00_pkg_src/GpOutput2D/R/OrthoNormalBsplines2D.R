@@ -144,9 +144,6 @@ OrthoNormalBsplines2D <-function(x,y,x.knots,y.knots,order=2,ortho="Redd",expand
   Phi_mat <-matrix(new.OPhi,nrow=nx*ny,ncol=K*L)
   attr(OPhi_2D,"matrix")<-Phi_mat
 
-  # memory deallocation
-  rm(list=c("new.OPhi ","Phi_mat"))
-
   class(OPhi_2D)<-"OrthoNormalBsplines2D"
 
   return(OPhi_2D)

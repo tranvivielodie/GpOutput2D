@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.3)  28 NOV 2020 18:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.3)  28 NOV 2020 19:03
 entering extended mode
-**C:/Users/tran-/AppData/Local/Temp/RtmpkdP2Lu/Rd2pdf6f086606711d/Rd2.tex
-(C:/Users/tran-/AppData/Local/Temp/RtmpkdP2Lu/Rd2pdf6f086606711d/Rd2.tex
+**C:/Users/tran-/AppData/Local/Temp/RtmpUdz7aR/Rd2pdf63d43b71a66/Rd2.tex
+(C:/Users/tran-/AppData/Local/Temp/RtmpUdz7aR/Rd2pdf63d43b71a66/Rd2.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-06-18>
 (C:\Users\tran-\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
@@ -444,12 +444,12 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1300.
  ) 
 Here is how much of TeX's memory you used:
  6218 strings out of 480790
- 95244 string characters out of 2897302
+ 95233 string characters out of 2897302
  353702 words of memory out of 3000000
  21916 multiletter control sequences out of 15000+200000
  567190 words of font info for 59 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 47i,5n,40p,475b,604s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 47i,5n,40p,474b,604s stack positions out of 5000i,500n,10000p,200000b,50000s
 pdfTeX warning (dest): name{Rfn.predict.km} has been referenced but does not 
 exist, replaced by a fixed one
 

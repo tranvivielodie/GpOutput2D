@@ -383,8 +383,6 @@ detaching 'package:DiceDesign', 'package:lhs'
 > 
 > # Generating a two-dimensional othonormal B-splines basis
 > OPhi <-OrthoNormalBsplines2D(z,z,z.knots,z.knots,ortho="GS")
-Warning in rm(list = c("new.OPhi ", "Phi_mat")) :
-  object 'new.OPhi ' not found
 > 
 > ########################
 > #
@@ -1069,7 +1067,7 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  14.3 0.28 14.92 NA NA 
+Time elapsed:  14.02 0.5 14.92 NA NA 
 > grDevices::dev.off()
 null device 
           1 
