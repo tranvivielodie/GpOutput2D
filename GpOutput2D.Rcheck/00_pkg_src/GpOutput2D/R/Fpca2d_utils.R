@@ -263,8 +263,18 @@ inverse_Fpca2d <-function(scores,fpca){
     })# end res_coeff
   }# end ifelse center
 
-  # coefficients on Wavelet2D object
-  res_coeff <- array(res_coeff,dim=c(d[1],d[2],n))
+  # coefficients
+  if(attr(fpca,"method")=="Bsplines"){
+    res_coeff_mat <- res_coeff # keep matrix for B-splines
+    res_coeff <- array(res_coeff_mat,dim=c(d[1],d[2],n))
+    attr(res_coeff,"matrix")<-res_coeff_mat
+    rm(res_coeff_mat) # memory deallocation
+  }else{
+    res_coeff <- array(res_coeff,dim=c(d[1],d[2],n))
+  }# end ifelse
+
+
+
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   #  if wavelet basis
   #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
