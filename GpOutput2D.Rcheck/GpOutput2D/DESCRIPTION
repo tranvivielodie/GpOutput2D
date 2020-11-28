@@ -12,5 +12,5 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 NeedsCompilation: no
-Packaged: 2020-11-28 18:28:52 UTC; tran-
-Built: R 3.6.3; ; 2020-11-28 18:29:01 UTC; windows
+Packaged: 2020-11-28 18:39:00 UTC; tran-
+Built: R 3.6.3; ; 2020-11-28 18:39:10 UTC; windows
