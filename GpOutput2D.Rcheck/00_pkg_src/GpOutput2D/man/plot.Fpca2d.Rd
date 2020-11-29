@@ -6,7 +6,7 @@
 \usage{
 \method{plot}{Fpca2d}(
   x,
-  type = c("inertia", "energy", "MeanPoe", "SelectedCoeff"),
+  type = c("inertia", "energy", "MeanPoe"),
   PC = 1:2,
   p = seq(0.5, 1, by = 0.05),
   z1 = NULL,

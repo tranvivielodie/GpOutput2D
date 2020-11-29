@@ -24,7 +24,7 @@
 #' @method plot Fpca2d
 #'
 #' @export
-plot.Fpca2d<-function(x,type=c("inertia","energy","MeanPoe","SelectedCoeff"),
+plot.Fpca2d<-function(x,type=c("inertia","energy","MeanPoe"),
                       PC=1:2,
                       p=seq(0.5,1,by=0.05),
                       z1=NULL,z2=NULL,...){
@@ -123,67 +123,7 @@ plot.Fpca2d<-function(x,type=c("inertia","energy","MeanPoe","SelectedCoeff"),
   ###############
   if("MeanPoe"%in%type){
     poe <- attr(x,"mean_poe")
-
-    if("SelectedCoeff"%in%type){
-      old.mar <-par()$mar
-
-      par(xpd = T, mar = par()$mar + c(0,0,0,7))
-
-
-      # matrix with 1 if the coeff is selected.Otherwise, it is 0.
-      matrix01<-poe
-      ncoeff <-attr(x,"ncoeff")
-      idx1 <-order(as.vector(poe),decreasing = TRUE)[1:ncoeff]
-
-
-      if(length(idx1)<ncoeff){
-        matrix01[idx1]<-1
-        matrix01[-idx1]<-0
-        plot(matrix01,col=c("white","darkred"),legend.col=FALSE,
-             main = "Coefficients modeled on PCA")
-      }else{
-        # plot
-        class(matrix01)<-class(poe)
-        matrix01<-matrix(rep(1,length(poe)),ncol=ncol(poe))
-        image(matrix01,col=c("darkred"),
-             main = "Coefficients modeled on PCA")
-        }#end ifelse
-
-
-
-
-
-
-
-      # graphic window
-      al <- par("usr") # window limit
-      names(al)<-c("xmin","xmax","ymin","ymax")
-
-      legend((x.mar<-al["xmax"]+0.01),al["ymax"],
-             legend=c("not on PCA","on PCA"), cex=0.8,
-             fill=c("white","darkred"), title="Coefficients : ")
-
-      ### graphic window ###
-
-      # vertical
-      xv<-c(al["xmin"],al["xmin"])
-      yv<-c(al["ymin"],al["ymax"])
-      lines(x=xv,y=yv)
-
-      # horizontal
-      xh<-c(al["xmin"],al["xmax"])
-      yh<-c(al["ymax"],al["ymax"])
-      lines(x=xh,y=yh)
-
-
-      # plot mean poe
-      par(mar=old.mar)
       plot(poe,...)
-
-
-    }else{
-      plot(poe,...)
-      }# end if "SelectedCoeff"
   }# end if MeanPoe
 
 } # end plot.Fpca2d
