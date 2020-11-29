@@ -139,7 +139,7 @@ OrthoNormalBsplines2D <-function(x,y,x.knots,y.knots,order=2,ortho="Redd",expand
   # memory deallocation
   rm(list=c("OPhi1","OPhi2"))
 
-  # matrix (to compute coefficients)
+  ## matrix (to compute coefficients)
   new.OPhi <- aperm(OPhi_2D, c(1,3,2,4))
   Phi_mat <-matrix(new.OPhi,nrow=nx*ny,ncol=K*L)
   attr(OPhi_2D,"matrix")<-Phi_mat

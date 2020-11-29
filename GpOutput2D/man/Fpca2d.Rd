@@ -9,8 +9,8 @@ Fpca2d(method = c("Bsplines", "Wavelets"), ...)
 \arguments{
 \item{method}{a character string which specifies the method used to implement FPCA.}
 
-\item{...}{further parameters for the basis decomposition : see \code{\link{Fpca2d.Wavelets}}, for using wavelets, and
-\code{Fpca2d.Bsplines}, for using B-splines.}
+\item{...}{further parameters for the projection method: see \code{\link{Fpca2d.Wavelets}}, for using wavelets, and
+\code{Fpca2d.Bsplines}, for using orthonormal B-splines.}
 }
 \value{
 an object of class "Fpca2d" which is a list with the following items :
@@ -19,7 +19,7 @@ an object of class "Fpca2d" which is a list with the following items :
                        (i.e., the square roots of the eigenvalues of the covariance operator).
    \item \code{EigFct} : a three dimensional array with the eigenfunctions.
                          The two first dimensions correspond to data (images, maps, etc.) dimensions.
-                         The third one is the maximal number of principal component used.
+                         The third one is the number of modeled principal component.
    \item \code{x} : if \code{retx} is \code{TRUE} (see \code{\link{prcomp}}).
                     Data scores (coordinates in the eigen basis) are returned.
    \item \code{center}, \code{scale} : a logical value which indicates if data coefficients are respectively centered or scaled.
@@ -27,7 +27,7 @@ an object of class "Fpca2d" which is a list with the following items :
 }
 \description{
 A wrapper function to perform FPCA on two-dimensional data (images, maps, etc.),
-             given a implementation method. For instance, the valid methods are
+             given a projection method. For instance, the valid projections are
              two methods based on projection method (here, "Wavelets" and "Bsplines").
 }
 \examples{
