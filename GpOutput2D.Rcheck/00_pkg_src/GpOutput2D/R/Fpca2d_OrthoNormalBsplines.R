@@ -105,21 +105,24 @@ Fpca2d.Bsplines<-function(x,
       # choose the number of coefficients such as CumPoe<=p
       ncoeff <- length(which(CumPoe<=p))
     }# end ifelse (p==1)
+  }else{
+    # coefficients for PCA
+
+    if(length(poe)<ncoeff){
+      warning("The size of the B-splines basis is less than ncoeff. ncoeff has been replaced by
+            the total size of the projection.")
+      ncoeff <-length(poe)
+    }
+    if(length(poe)>ncoeff){
+      warning("The size of the B-splines basis is more than ncoeff. ncoeff has been replaced by
+            the total size of the projection.")
+      ncoeff <-length(poe)
+    }
+
   }# end if is.null(ncoeff)
   #-------------------------------------------------------------
 
-  # coefficients for PCA
 
-  if(length(poe)<ncoeff){
-    warning("The size of the B-splines basis is less than ncoeff. ncoeff has been replaced by
-            the total size of the projection.")
-    ncoeff <-length(poe)
-  }
-  if(length(poe)>ncoeff){
-    warning("The size of the B-splines basis is more than ncoeff. ncoeff has been replaced by
-            the total size of the projection.")
-    ncoeff <-length(poe)
-  }
 
 
 

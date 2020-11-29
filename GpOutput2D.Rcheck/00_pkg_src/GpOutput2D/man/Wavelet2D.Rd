@@ -23,7 +23,7 @@ an object of class "Wavelet2D", which corresponds to
          of same dimension as \code{x}, with the wavelet coefficients.
 }
 \description{
-performs two dimensional wavelet transforms on all images/maps from a data set.
+performs two dimensional wavelet transforms on all images/maps of a data set.
 }
 \examples{
 # inputs of the Campbell2D function

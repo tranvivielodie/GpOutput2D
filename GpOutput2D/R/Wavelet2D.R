@@ -133,7 +133,7 @@ as.dwt.2d <- function(x){
 
 #' @title Multiple two dimensional wavelet transform
 #'
-#' @description performs two dimensional wavelet transforms on all images/maps from a data set.
+#' @description performs two dimensional wavelet transforms on all images/maps of a data set.
 #' @author Tran Vi-vi Elodie PERRIN
 #'
 #' @param x a matrix (for one map) or a three dimensional array (for several maps).
