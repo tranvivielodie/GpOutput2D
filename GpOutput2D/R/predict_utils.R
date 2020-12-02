@@ -1,14 +1,18 @@
-#' @title RMSE and Q2 computation
+#' @title Prediction accuracy
 #'
-#' @param y an array with real two dimensional functional outputs.
-#' @param py Predictions getting with \code{\link{km_Fpca2d}}.
+#' @description Prediction accuracy is measured by the spatial RMSE and Q2.
+#' \code{error.predict} also computes RMSE and Q2 of the FPCA scores.
+#'
+#' @param y an array with the real two dimensional functional outputs.
 #' The two first dimensions correspond to data dimensions,
 #'  which are denoted M and N. The third one is the size of the data set.
+#' @param py predictions which are given by \code{\link{predict.km_Fpca2d}} or \code{\link{predict.gp_Fpca2d}}.
 #' @param fpca an object of class \code{\link{Fpca2d}}.
-#' @param sd.epsilon a value with \code{y} standard deviation threshold. Q2 values associated to
-#' standard deviations less or equal to \code{sd.epsilon} are NA.
+#' @param sd.epsilon a value with \code{y} standard deviation threshold. Q2 are NA, where
+#' spatial standard deviations are less than or equal to \code{sd.epsilon}.
 #' The default is 0. This is to avoid infinite values of Q2.
-#' @param scores.epsilon a value with  \code{y}  scores standard deviation threshold. Q2 values less or equal to
+#' @param scores.epsilon a value with  \code{y}  score standard deviation threshold. Q2 of scores are NA, where
+#' score standard deviations are less than or equal to \code{scores.epsilon}.
 #' \code{scores.epsilon} are NA. The default is 0. This is to avoid infinite values of Q2.
 #' @param rtx.scores a logical value. If TRUE, rmse and Q2 of the predicted scores are returned.
 #' The default is FALSE
@@ -19,8 +23,8 @@
 #' \itemize{
 #'   \item if rtx.scores=FALSE, a list with the following items is returned :
 #'         \itemize{
-#'         \item \code{rmse} : rmse of \code{y} prediction.
-#'         \item \code{Q2} : rmse of \code{y} prediction.
+#'         \item \code{rmse} : the spatial rmse of \code{y} prediction.
+#'         \item \code{Q2} : the spatial Q2 of \code{y} prediction.
 #'         }
 #'   \item if rtx.scores=TRUE, a list with the following items is returned :
 #'         \itemize{
@@ -29,7 +33,7 @@
 #'                  \item \code{rmse} : rmse of \code{y} score prediction.
 #'                   \item \code{Q2} : Q2 of \code{y} score prediction.
 #'             }
-#'             \item \code{y} :the same returned list as for rtx.scores=FALSE
+#'             \item \code{y} :the same list as for the case rtx.scores=FALSE
 #'         }
 #' }
 #'

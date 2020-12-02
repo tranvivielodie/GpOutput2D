@@ -792,7 +792,7 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 > 
 > fpca_w<- Fpca2d(Y,method="Wavelets",
 +                 wf="d4", J=1, # wavelet parameters
-+                 ncoeff=1200, rank.=1) # FPCA configuration
++                 ncoeff=1200, rank.=2) # FPCA configuration
 > 
 > #####################
 > ### Kriging model ###
@@ -837,11 +837,11 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 > 
 > ### scores ###
 > print(err.pw.UK$scores$rmse)
-     PC1 
-36.73079 
+     PC1      PC2 
+36.73079 13.37338 
 > print(err.pw.UK$scores$Q2)
-      PC1 
-0.9953079 
+      PC1       PC2 
+0.9953079 0.9841100 
 > 
 > ### images/maps ###
 > library(fields)
@@ -1067,7 +1067,7 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  12.55 0.3 12.94 NA NA 
+Time elapsed:  13.07 0.33 13.53 NA NA 
 > grDevices::dev.off()
 null device 
           1 

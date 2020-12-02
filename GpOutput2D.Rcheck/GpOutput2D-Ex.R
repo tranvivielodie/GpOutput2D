@@ -401,7 +401,7 @@ colnames(NewX)<-colnames(X)
 
 fpca_w<- Fpca2d(Y,method="Wavelets",
                 wf="d4", J=1, # wavelet parameters
-                ncoeff=1200, rank.=1) # FPCA configuration
+                ncoeff=1200, rank.=2) # FPCA configuration
 
 #####################
 ### Kriging model ###

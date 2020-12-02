@@ -21,7 +21,7 @@ Wavelet2D               Multiple two dimensional wavelet transform
 coef.OrthoNormalBsplines2D
                         Get control points of two-dimensional B-splines
                         basis
-error.predict           RMSE and Q2 computation
+error.predict           Prediction accuracy
 gp_Fpca2d               Gaussian Process Model on principal components
                         of 'Fpca2d', by using 'kergp' package
 km_Fpca2d               Gaussian Process Model on principal components
