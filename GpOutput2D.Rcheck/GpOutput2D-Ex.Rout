@@ -1067,7 +1067,7 @@ detaching 'package:fields', 'package:spam', 'package:grid',
 
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  13.07 0.33 13.53 NA NA 
+Time elapsed:  13.5 0.38 13.98 NA NA 
 > grDevices::dev.off()
 null device 
           1 

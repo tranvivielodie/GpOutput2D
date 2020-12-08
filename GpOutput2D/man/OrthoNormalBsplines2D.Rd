@@ -10,7 +10,7 @@ OrthoNormalBsplines2D(
   x.knots,
   y.knots,
   order = 2,
-  ortho = "Redd",
+  ortho = "GS",
   expand_knots = TRUE,
   ...
 )

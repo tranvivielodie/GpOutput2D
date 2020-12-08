@@ -70,7 +70,7 @@
 #'
 #'
 #' @export
-OrthoNormalBsplines2D <-function(x,y,x.knots,y.knots,order=2,ortho="Redd",expand_knots=TRUE,...){
+OrthoNormalBsplines2D <-function(x,y,x.knots,y.knots,order=2,ortho="GS",expand_knots=TRUE,...){
 
   # Dimensions
   nx<-length(x); ny<-length(y) # data dimensions

@@ -12,7 +12,7 @@ Fpca2d.Bsplines(
   z1.knots,
   z2.knots,
   norder = 2,
-  ortho = "Redd",
+  ortho = "GS",
   expand_knots = FALSE,
   p = 1,
   ncoeff = NULL,
@@ -34,7 +34,7 @@ which are denoted M and N. The third one is the size of the data set.}
 
 \item{ortho}{a character string which specify the orthogonalization method.
 If it is "Redd", the \code{\link{orthogonalsplinebasis}} package is used.
-If it is "GS", the Gram-Schmidt is used. The default is "Redd".}
+If it is "GS", the Gram-Schmidt is used. The default is "GS".}
 
 \item{expand_knots}{a boolean. If it is TRUE, knots are expanded
 for appropriate number of knots in bsplines (see \code{\link{expand.knots}}). The default is FALSE.}

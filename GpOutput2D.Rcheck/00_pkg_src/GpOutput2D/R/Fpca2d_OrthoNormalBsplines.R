@@ -9,7 +9,7 @@
 #' @param norder Order of the spline fit (degree= order-1). The default is 2.
 #' @param ortho a character string which specify the orthogonalization method.
 #' If it is "Redd", the \code{\link{orthogonalsplinebasis}} package is used.
-#' If it is "GS", the Gram-Schmidt is used. The default is "Redd".
+#' If it is "GS", the Gram-Schmidt is used. The default is "GS".
 #' @param expand_knots a boolean. If it is TRUE, knots are expanded
 #' for appropriate number of knots in bsplines (see \code{\link{expand.knots}}). The default is FALSE.
 #' @param p a value which fixes the total mean proportion of energy (or mean spatial variance).
@@ -41,7 +41,7 @@
 #'
 #' @export
 Fpca2d.Bsplines<-function(x,
-                          z1,z2,z1.knots,z2.knots,norder=2, ortho="Redd",expand_knots=FALSE,# B-splines  parameters
+                          z1,z2,z1.knots,z2.knots,norder=2, ortho="GS",expand_knots=FALSE,# B-splines  parameters
                           p=1,ncoeff=NULL, # number of coefficients for PCA
                           center=TRUE,scale.=FALSE,...){
 

@@ -145,8 +145,6 @@ plot.Fpca2d<-function(x,type=c("inertia","energy","MeanPoe"),
 #'
 #'
 #' @keywords internal
-#'
-#' @export
 inverse_Fpca2d <-function(scores,fpca){
 
   # number of principal components
