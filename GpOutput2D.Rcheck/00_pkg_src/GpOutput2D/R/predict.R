@@ -3,7 +3,7 @@
 #' @param object an object of class \code{\link{km_Fpca2d}}.
 #' @param newdata a vector, matrix or data frame containing the points where to perform predictions.
 #' @param type a character string corresponding to the kriging family, to be chosen between simple kriging ("SK"), or universal kriging ("UK").
-#' @param compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (the corresponding standard deviation) and confidence intervals are computed too.
+#' @param compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (here, the standard deviation is returned) and confidence intervals are computed too.
 #' @param ... see \code{\link{predict.km}}.
 #'
 #' @importFrom stats predict
@@ -107,7 +107,7 @@ predict.km_Fpca2d <-function(object,newdata,type,compute = TRUE,...){
 #' @param object an object of class \code{\link{gp_Fpca2d}}.
 #' @param newdata a vector, matrix or data frame containing the points where to perform predictions.
 #' @param type a character string corresponding to the kriging family, to be chosen between simple kriging ("SK"), or universal kriging ("UK").
-#' @param compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (the corresponding standard deviation) and confidence intervals are computed too.
+#' @param compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (here, the standard deviation is returned) and confidence intervals are computed too.
 #' @param ... see \code{\link{predict.km}}.
 #'
 #' @importFrom stats predict

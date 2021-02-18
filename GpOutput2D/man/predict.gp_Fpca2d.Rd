@@ -13,7 +13,7 @@
 
 \item{type}{a character string corresponding to the kriging family, to be chosen between simple kriging ("SK"), or universal kriging ("UK").}
 
-\item{compute}{an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (the corresponding standard deviation) and confidence intervals are computed too.}
+\item{compute}{an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (here, the standard deviation is returned) and confidence intervals are computed too.}
 
 \item{...}{see \code{\link{predict.km}}.}
 }
