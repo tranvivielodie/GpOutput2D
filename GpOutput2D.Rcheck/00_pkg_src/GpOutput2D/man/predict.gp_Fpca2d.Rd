@@ -4,7 +4,7 @@
 \alias{predict.gp_Fpca2d}
 \title{Predict values and confidence intervals at newdata for a km_Fpca2d object}
 \usage{
-\method{predict}{gp_Fpca2d}(object, newdata, type, se.compute = TRUE, ...)
+\method{predict}{gp_Fpca2d}(object, newdata, type, compute = TRUE, ...)
 }
 \arguments{
 \item{object}{an object of class \code{\link{gp_Fpca2d}}.}
@@ -13,7 +13,7 @@
 
 \item{type}{a character string corresponding to the kriging family, to be chosen between simple kriging ("SK"), or universal kriging ("UK").}
 
-\item{se.compute}{an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (actually, the corresponding standard deviation) and confidence intervals are computed too.}
+\item{compute}{an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (the corresponding standard deviation) and confidence intervals are computed too.}
 
 \item{...}{see \code{\link{predict.km}}.}
 }
@@ -24,10 +24,10 @@ a list with the following items :
   (see  \code{\link{Fpca2d}} and \code{\link{predict.km}}).
   \item \code{mean} : an array with three dimensions which contains image (or map) kriging means.
   The two first dimensions corresponds to the output data dimensions. The third correspond to the number of predictions.
- \item \code{sd} : it is return only if se.compute = TRUE.
+ \item \code{sd} : it is return only if compute = TRUE.
  If TRUE, an array which contains image (or map) prediction standard deviation.
  \item \code{lower95,upper95} :  bounds of the 95% confidence interval computed at \code{newdata}.
-  Not computed if se.compute=FALSE.
+  Not computed if compute=FALSE.
 }
 }
 \description{

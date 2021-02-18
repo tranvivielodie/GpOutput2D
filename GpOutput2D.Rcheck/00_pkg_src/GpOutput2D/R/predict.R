@@ -3,7 +3,7 @@
 #' @param object an object of class \code{\link{km_Fpca2d}}.
 #' @param newdata a vector, matrix or data frame containing the points where to perform predictions.
 #' @param type a character string corresponding to the kriging family, to be chosen between simple kriging ("SK"), or universal kriging ("UK").
-#' @param se.compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (actually, the corresponding standard deviation) and confidence intervals are computed too.
+#' @param compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (the corresponding standard deviation) and confidence intervals are computed too.
 #' @param ... see \code{\link{predict.km}}.
 #'
 #' @importFrom stats predict
@@ -16,17 +16,17 @@
 #'   (see  \code{\link{Fpca2d}} and \code{\link{predict.km}}).
 #'   \item \code{mean} : an array with three dimensions which contains image (or map) kriging means.
 #'   The two first dimensions corresponds to the output data dimensions. The third correspond to the number of predictions.
-#'  \item \code{sd} : it is return only if se.compute = TRUE.
+#'  \item \code{sd} : it is return only if compute = TRUE.
 #'  If TRUE, an array which contains image (or map) prediction standard deviation.
 #'  \item \code{lower95,upper95} :  bounds of the 95% confidence interval computed at \code{newdata}.
-#'   Not computed if se.compute=FALSE.
+#'   Not computed if compute=FALSE.
 #' }
 #'
 #' @seealso \code{\link{predict.km}}
 #'
 #'
 #' @export
-predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
+predict.km_Fpca2d <-function(object,newdata,type,compute = TRUE,...){
 
   # number of principal component
   nPC <- length(object)
@@ -44,7 +44,7 @@ predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
   # prediction on each principal component
   p_PC <-lapply(1:nPC, function(i){
     pi <-predict(object=object[[i]],newdata=newdata,type=type,
-                 se.compute = se.compute,...)
+                 compute = compute,...)
     return(pi)
   })# end p.PC
 
@@ -61,7 +61,7 @@ predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
 
   # scores sd
   p_sd <-sapply(1:nPC, function(i){p_PC[[i]]$sd}) # scores standard deviation
-  if(isTRUE(se.compute)){ # if true return map prediction sd**2
+  if(isTRUE(compute)){ # if true return map prediction sd**2
     p_sd2 <- p_sd**2
 
     #%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,7 +107,7 @@ predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
 #' @param object an object of class \code{\link{gp_Fpca2d}}.
 #' @param newdata a vector, matrix or data frame containing the points where to perform predictions.
 #' @param type a character string corresponding to the kriging family, to be chosen between simple kriging ("SK"), or universal kriging ("UK").
-#' @param se.compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (actually, the corresponding standard deviation) and confidence intervals are computed too.
+#' @param compute an optional boolean. If FALSE, only the kriging mean is computed. If TRUE, the kriging variance (the corresponding standard deviation) and confidence intervals are computed too.
 #' @param ... see \code{\link{predict.km}}.
 #'
 #' @importFrom stats predict
@@ -120,16 +120,16 @@ predict.km_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
 #'   (see  \code{\link{Fpca2d}} and \code{\link{predict.km}}).
 #'   \item \code{mean} : an array with three dimensions which contains image (or map) kriging means.
 #'   The two first dimensions corresponds to the output data dimensions. The third correspond to the number of predictions.
-#'  \item \code{sd} : it is return only if se.compute = TRUE.
+#'  \item \code{sd} : it is return only if compute = TRUE.
 #'  If TRUE, an array which contains image (or map) prediction standard deviation.
 #'  \item \code{lower95,upper95} :  bounds of the 95% confidence interval computed at \code{newdata}.
-#'   Not computed if se.compute=FALSE.
+#'   Not computed if compute=FALSE.
 #' }
 #'
 #' @seealso \code{\link{predict.km}}
 #'
 #' @export
-predict.gp_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
+predict.gp_Fpca2d <-function(object,newdata,type,compute = TRUE,...){
 
   # number of principal component
   nPC <- length(object)
@@ -146,7 +146,7 @@ predict.gp_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
   # prediction on each principal component
   p_PC <-lapply(1:nPC, function(i){
     pi <-predict(object=object[[i]],newdata=newdata,type=type,
-                 se.compute = se.compute,...)
+                 compute = compute,...)
     return(pi)
   })# end p.PC
 
@@ -163,7 +163,7 @@ predict.gp_Fpca2d <-function(object,newdata,type,se.compute = TRUE,...){
 
   # scores sd
   p_sd <-sapply(1:nPC, function(i){p_PC[[i]]$sd}) # scores standard deviation
-  if(isTRUE(se.compute)){ # if true return map prediction sd**2
+  if(isTRUE(compute)){ # if true return map prediction sd**2
     p_sd2 <- p_sd**2
 
     #%%%%%%%%%%%%%%%%%%%%%%%%%
